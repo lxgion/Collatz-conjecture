@@ -23,16 +23,7 @@ def solve_collatz_conjecture(limit):
     smoothing_factor = 0.1
     estimated_time = 0
     for i in range(2, limit+1):
-        n = i
-        steps = 0
-        while n != 1 and n not in cache:
-            if n % 2 == 0:
-                n = n // 2
-            else:
-                n = 3 * n + 1
-            steps += 1
-        if n in cache:
-            steps += cache[n]
+        steps = collatz(i, cache)
         cache[i] = steps
         if steps > max_steps:
             max_steps = steps
